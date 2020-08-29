@@ -1,9 +1,9 @@
 # Change Log
+ImpalaLang Extension change log.
 
-All notable changes to the "impala-lang" extension will be documented in this file.
+## [Release Notes]
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### 1.0.0
 
-## [Unreleased]
-
-- Initial release
+- Added basic syntax highlighting for the impala language.
+- This adds highlights to keywords, datatypes, function calls, strings, numbers and comments.
