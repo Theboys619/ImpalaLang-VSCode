@@ -1,0 +1,135 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ImpalaLang",
+	"patterns": [
+		{
+			"include": "#function"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#dataTypes"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#functioncall"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+				"name": "keyword.control.impala",
+				"match": "\\b(if|else|while|for|return)\\b"
+				},
+				{
+					"name": "keyword.impala",
+					"match": "\\b(true|false|between|and)\\b"
+				},
+				{
+					"name": "keyword.operator.impala",
+					"match": "\\b(=|==|\\+=|\\-=|\\+\\+|\\-\\-|\\|\\||&&|\\-|\\+|\\*|\/)\\b"
+				}
+			]
+		},
+		"dataTypes": {
+			"patterns": [
+				{
+					"name": "storage.type.impala",
+					"match": "\\b(any|string|number|bool|object|none)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.impala",
+			"begin": "\"|'|`",
+			"end": "\"|'|`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.impala",
+					"match": "\\\\."
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.numeric.impala",
+					"match": "\\-?\\d+(\\.\\d+)?"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.impala",
+					"match": "\\$.+$"
+				}
+			]
+		},
+		"functioncall": {
+			"patterns": [
+				{
+					"match": "([a-zA-Z_\\$][a-zA-Z_\\$0-9]*) *\\(",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.impala"
+						}
+					}
+				}
+			]
+		},
+		"function": {
+			"patterns": [
+				{
+					"match": "([a-zA-Z]+) *([a-zA-Z_\\$][a-zA-Z0-9_\\$]* *\\() *([a-zA-Z_\\$,0-9 ]+)* *\\) *\\{",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#dataTypes"
+								}
+							]
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#functioncall"
+								}
+							]
+						},
+						"3": {
+							"patterns": [
+								{
+									"match": "([a-zA-Z]+) *([a-zA-Z_\\$][a-zA-Z0-9_\\$]*)",
+									"captures": {
+										"1": {
+											"patterns": [
+												{
+													"include": "#dataTypes"
+												}
+											]
+										},
+										"2": {
+											"name": "variable.parameter"
+										}
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	},
+	"scopeName": "source.imp"
+}

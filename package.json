@@ -1,0 +1,25 @@
+{
+    "name": "impala-lang",
+    "displayName": "Impala-Lang",
+    "description": "A language highlighter for ImpalaLang",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.48.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "impala",
+            "aliases": ["ImpalaLang", "impala"],
+            "extensions": ["imp"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "impala",
+            "scopeName": "source.imp",
+            "path": "./syntaxes/impala.tmLanguage.json"
+        }]
+    }
+}
